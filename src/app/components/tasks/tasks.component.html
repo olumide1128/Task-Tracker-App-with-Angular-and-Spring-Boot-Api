@@ -1,0 +1,16 @@
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
+<div *ngIf="tasks.length > 0; else notasks">
+    <app-task-item 
+    *ngFor="let task of tasks" 
+    [task]="task" 
+    (onDeleteTask)="deleteTask(task)"
+    (onToggleReminder)="toggleReminder(task)">
+    </app-task-item>
+</div>
+
+<ng-template #notasks>
+    <p [ngStyle]="{'color':'green'}">
+        No Task Added!
+    </p>
+</ng-template>
+
