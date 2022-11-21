@@ -20,6 +20,7 @@ export class TaskItemComponent implements OnInit {
   }
 
   onDelete(t: Task){
+    console.log("Delete Icon Clicked!");
     this.onDeleteTask.emit(t);
   }
 

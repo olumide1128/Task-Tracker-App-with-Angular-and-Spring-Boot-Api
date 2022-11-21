@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable, of} from 'rxjs';
 import {Task} from '../Task';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class TaskService {
 
-  private apiUrl = 'http://tasktrackerapi-env-2.eba-wkujubjt.eu-west-1.elasticbeanstalk.com/api/tasks';
+  private apiUrl = 'https://task-tracker-app-01.herokuapp.com/api/tasks';
 
   constructor(private http:HttpClient) { }
 
@@ -24,7 +24,9 @@ export class TaskService {
 
   deleteTask(task: Task): Observable<Task> {
     const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Task>(url);
+    this.http.delete<Task>(url);
+    return of(task);
+
   }
 
   updateTaskReminder(task: Task): Observable<Task>{
